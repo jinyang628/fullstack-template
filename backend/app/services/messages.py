@@ -7,4 +7,4 @@ log = logging.getLogger(__name__)
 
 class MessagesService:
     async def chat(self, input: MessageRequest) -> MessageResponse:
-        return MessageResponse(id="123", content="Hello, world!")
+        return MessageResponse(id="123", content=f"Why did you say {input.content}?")
