@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 export const messageRequestSchema = z.object({
-  id: z.string(),
+  id: z.string().nullable(),
   content: z.string(),
 });
 
