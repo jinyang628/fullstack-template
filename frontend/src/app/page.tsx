@@ -13,30 +13,28 @@ export default function Home() {
   const [message, setMessage] = useState('');
   const [response, setResponse] = useState('');
   return (
-    <div className="grid min-h-screen grid-rows-[20px_1fr_20px] items-center justify-items-center gap-16 p-8 pb-20 font-[family-name:var(--font-geist-sans)] sm:p-20">
-      <div className="flex flex-col items-center justify-center gap-4">
-        <h1 className="text-4xl font-bold">Chat with your data</h1>
-        <Input
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          placeholder="Enter a message"
-          className="w-full"
-          autoFocus
-        />
-        <Button
-          onClick={async () => {
-            const messageRequest = messageRequestSchema.parse({
-              id: null,
-              content: message,
-            });
-            const response = await chat(messageRequest);
-            setResponse(response.content);
-          }}
-        >
-          Send
-        </Button>
-        <p>{response}</p>
-      </div>
+    <div className="flex flex-col items-center justify-center gap-4">
+      <h1 className="text-4xl font-bold">Chat with your data</h1>
+      <Input
+        value={message}
+        onChange={(e) => setMessage(e.target.value)}
+        placeholder="Enter a message"
+        className="w-full"
+        autoFocus
+      />
+      <Button
+        onClick={async () => {
+          const messageRequest = messageRequestSchema.parse({
+            id: null,
+            content: message,
+          });
+          const response = await chat(messageRequest);
+          setResponse(response.content);
+        }}
+      >
+        Send
+      </Button>
+      <p>{response}</p>
     </div>
   );
 }
