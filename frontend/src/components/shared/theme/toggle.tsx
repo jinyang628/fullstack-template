@@ -11,7 +11,7 @@ export default function ThemeToggle() {
     <Button
       variant="outline"
       size="icon"
-      className="flex-shrink-0"
+      className="flex-shrink-0 hover:cursor-pointer"
       onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
     >
       <SunIcon className="size-4 scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
