@@ -1,5 +1,7 @@
 'use client';
 
+import Link from 'next/link';
+
 import { useState } from 'react';
 
 import { Cross1Icon, HamburgerMenuIcon } from '@radix-ui/react-icons';
@@ -39,7 +41,7 @@ export default function Header() {
             asChild
             onClick={() => setIsMobileMenuOpen(false)}
           >
-            <a href={item.href}>{item.label}</a>
+            <Link href={item.href}>{item.label}</Link>
           </Button>
         ))}
       </div>
