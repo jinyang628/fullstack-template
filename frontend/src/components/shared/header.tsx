@@ -7,14 +7,10 @@ import { Cross1Icon, HamburgerMenuIcon } from '@radix-ui/react-icons';
 import ThemeToggle from '@/components/shared/theme/toggle';
 import { Button } from '@/components/ui/button';
 
+import { NAV_ITEMS } from '@/lib/constants';
+
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  const navItems = [
-    { label: 'Home', href: '/' },
-    { label: 'About', href: '/about' },
-    { label: 'Contact', href: '/contact' },
-  ];
 
   const mobileHamburgerButton = (
     <Button
@@ -35,7 +31,7 @@ export default function Header() {
   const mobileMenu = (
     <nav className="bg-background border-border absolute top-full right-0 left-0 z-50 mt-2 rounded-md border shadow-lg md:hidden">
       <div className="flex flex-col gap-1 p-2">
-        {navItems.map((item) => (
+        {NAV_ITEMS.map((item) => (
           <Button
             key={item.href}
             variant="ghost"
@@ -53,7 +49,7 @@ export default function Header() {
   return (
     <header className="relative flex w-full items-center justify-between gap-4">
       <nav className="hidden items-center gap-4 md:flex">
-        {navItems.map((item) => (
+        {NAV_ITEMS.map((item) => (
           <Button key={item.href} variant="ghost" asChild>
             <a href={item.href}>{item.label}</a>
           </Button>
