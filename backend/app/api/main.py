@@ -6,7 +6,7 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
-from app.api.routes import router
+from app.api.routers.v1 import router as v1_router
 
 logging.basicConfig(
     level=logging.INFO,
@@ -48,7 +48,8 @@ def create_app() -> FastAPI:
             allow_methods=["*"],
             allow_headers=["*"],
         )
-        app.include_router(router)
+        app.include_router(v1_router)
+        # Add other versioned routers in the future here
 
         @app.exception_handler(RequestValidationError)
         async def validation_exception_handler(request, exc: RequestValidationError):

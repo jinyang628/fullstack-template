@@ -8,7 +8,7 @@ export async function chat(request: MessageRequest): Promise<MessageResponse> {
   try {
     console.log('Sending message:', request);
     const response = await axios.post(
-      `${process.env.EXPO_PUBLIC_API_BASE_URL}/api/messages`,
+      `${process.env.EXPO_PUBLIC_API_BASE_URL}/api/v1/messages`,
       request,
     );
     return messageResponseSchema.parse(response.data);

@@ -7,7 +7,7 @@ from app.services.messages import MessagesService
 
 log = logging.getLogger(__name__)
 
-router = APIRouter()
+router = APIRouter(prefix="/api/v1")
 
 ### Health check
 
@@ -29,5 +29,5 @@ def get_messages_controller_router():
 router.include_router(
     get_messages_controller_router(),
     tags=["messages"],
-    prefix="/api/messages",
+    prefix="/messages",
 )
