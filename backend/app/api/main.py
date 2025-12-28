@@ -1,6 +1,6 @@
 import logging
 from contextlib import asynccontextmanager
-
+import os
 from fastapi import FastAPI, status
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
@@ -15,6 +15,10 @@ logging.basicConfig(
 logging.getLogger("httpx").setLevel(logging.WARNING)
 log = logging.getLogger(__name__)
 log.addHandler(logging.StreamHandler())
+
+
+raw_origins = os.getenv("ALLOWED_ORIGINS", "")
+allowed_origins = [origin.strip() for origin in raw_origins.split(",") if origin.strip()]
 
 
 @asynccontextmanager
@@ -35,10 +39,10 @@ def create_app() -> FastAPI:
     try:
         app = FastAPI(lifespan=lifespan, debug=True)
 
-        # TODO: This is a quick fix to bypass CORS error. We need to ensure that the origin is shared in production / whitelist specific origins explicitly.
+        # Add Frontend URL in the environment variable ALLOWED_ORIGINS
         app.add_middleware(
             CORSMiddleware,
-            allow_origins=["*"],
+            allow_origins=allowed_origins,
             allow_credentials=True,
             allow_methods=["*"],
             allow_headers=["*"],
@@ -51,9 +55,7 @@ def create_app() -> FastAPI:
             log.error(f"{request}: {exc_str}")
 
             content = {"status_code": 10422, "message": exc_str, "data": None}
-            return JSONResponse(
-                content=content, status_code=status.HTTP_422_UNPROCESSABLE_ENTITY
-            )
+            return JSONResponse(content=content, status_code=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
         return app
     except Exception as e:
