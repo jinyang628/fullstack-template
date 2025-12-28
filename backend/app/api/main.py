@@ -40,6 +40,7 @@ def create_app() -> FastAPI:
         app = FastAPI(lifespan=lifespan, debug=True)
 
         # Add Frontend URL in the environment variable ALLOWED_ORIGINS
+        log.warning(f"Allowed origins: {allowed_origins}")
         app.add_middleware(
             CORSMiddleware,
             allow_origins=allowed_origins,
