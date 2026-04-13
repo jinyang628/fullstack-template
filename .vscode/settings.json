@@ -1,5 +1,4 @@
 {
-  "eslint.format.enable": true,
   "editor.rulers": [
     100
   ],
@@ -21,12 +20,6 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "prettier.requireConfig": true,
-  "eslint.workingDirectories": [
-    {
-      "directory": "./frontend",
-      "changeProcessCWD": true 
-    },
-  ],
   "editor.codeActionsOnSave": {
       "source.fixAll.eslint": "explicit"
   },
@@ -57,17 +50,7 @@
   "pylint.args": [
       "--rcfile=.pylintrc"
   ],
-  "python.analysis.typeCheckingMode": "basic",
-  "python.analysis.useLibraryCodeForTypes": true,
-  "python.analysis.diagnosticSeverityOverrides": {
-      "reportGeneralTypeIssues": "error",
-      "reportTypeVarUsage": "error",
-      "reportUnknownMemberType": "none"
-  },
   "python.autoComplete.extraPaths": [
-    "${workspaceFolder}/backend"
-  ],
-  "python.analysis.extraPaths": [
     "${workspaceFolder}/backend"
   ],
 }
